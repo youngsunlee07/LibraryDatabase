@@ -15,12 +15,12 @@ Library Management System is a simple console-based application for managing boo
 ## Installation
 1. Clone this project locally.
 ```bash
-git clone https://github.com/yourusername/library-management-system.git
+git clone https://github.com/youngsunlee07/LibraryDatabase.git
 ```
 
 2. Move to the project directory.
 ``` bash
-cd library-management-system
+cd LibraryDatabase
 ``` 
 
 3. Install the required packages.
