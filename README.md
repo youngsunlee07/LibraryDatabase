@@ -74,8 +74,8 @@ SELECT setval(pg_get_serial_sequence('users', 'id'), COALESCE(MAX(id), 1) + 1, f
 SELECT setval(pg_get_serial_sequence('copies', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM copies;
 SELECT setval(pg_get_serial_sequence('borrowrecords', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM borrowrecords;
 SELECT setval(pg_get_serial_sequence('classifications', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM classifications;
+```
 These commands are included in the sample_data.sql file and can be executed after inserting sample data.
-``` 
 
 ## Contact
 For any inquiries, please contact: youngsun.lee07@gmail.com 
