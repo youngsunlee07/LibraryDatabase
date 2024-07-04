@@ -48,18 +48,18 @@ python main.py
 4. Follow the on-screen menu to select and perform the required tasks.
 
 ## File Descriptions
-main.py: Provides the user interface and executes the main functionalities.
-scheduler.py: Runs a scheduler that sends email notifications for overdue books at a specified time daily.
-database_connection.py: Contains database connection settings.
-document_search.py: Includes document search functionality.
-borrow_return.py: Handles document borrowing and returning functionalities.
-copy_management.py: Manages adding and deleting document copies.
-member_management.py: Manages adding, editing, and deleting members.
-classification_management.py: Manages adding, editing, and deleting classifications.
-document_management.py: Manages adding, editing, and deleting documents.
-schema.sql: Contains the database schema, defining tables and relationships.
-ER_diagram.png: An image file of the database ER diagram, visually showing the relationships between tables.
-sample_data.sql: An SQL file with sample data for initializing the database.
+- main.py: Provides the user interface and executes the main functionalities.
+- scheduler.py: Runs a scheduler that sends email notifications for overdue books at a specified time daily.
+- database_connection.py: Contains database connection settings.
+- document_search.py: Includes document search functionality.
+- borrow_return.py: Handles document borrowing and returning functionalities.
+- copy_management.py: Manages adding and deleting document copies.
+- member_management.py: Manages adding, editing, and deleting members.
+- classification_management.py: Manages adding, editing, and deleting classifications.
+- document_management.py: Manages adding, editing, and deleting documents.
+- schema.sql: Contains the database schema, defining tables and relationships.
+- ERdiagram.jpg: An image file of the database ER diagram, visually showing the relationships between tables.
+- insert_sample.sql: An SQL file with sample data for initializing the database.
 
 ## Database Setup
 ### PostgreSQL Sequence Value Synchronization
