@@ -5,21 +5,17 @@ def add_member(username, password, email, user_type):
     cursor = conn.cursor()
     
     try:
-        # Disable autocommit to start a transaction
-        conn.autocommit = False
+        conn.autocommit = False 
 
         # Insert new user into Users table
         cursor.execute("INSERT INTO Users (username, password, email, user_type) VALUES (%s, %s, %s, %s)", 
                        (username, password, email, user_type))
         
-        # Commit transaction
-        conn.commit()
-        
+        conn.commit() 
         print("Member added successfully.")
     
     except Exception as e:
-        # Rollback on error
-        conn.rollback()
+        conn.rollback() 
         print("Failed to add member:", e)
     
     finally:
@@ -49,12 +45,11 @@ def modify_member(user_id, username=None, password=None, email=None, user_type=N
         if user_type:
             cursor.execute("UPDATE Users SET user_type = %s WHERE id = %s", (user_type, user_id))
 
-        conn.commit()
+        conn.commit() 
         print("Member modified successfully.")
 
     except Exception as e:
-        # Rollback on error
-        conn.rollback()
+        conn.rollback() 
         print("Failed to modify member:", e)
 
     finally:
@@ -66,8 +61,7 @@ def delete_member(user_id):
     cursor = conn.cursor()
     
     try:
-        # Disable autocommit to start a transaction
-        conn.autocommit = False
+        conn.autocommit = False 
         
         # Check if the user exists
         cursor.execute("SELECT COUNT(*) FROM Users WHERE id = %s", (user_id,))
@@ -80,14 +74,11 @@ def delete_member(user_id):
         # Delete row from Users table
         cursor.execute("DELETE FROM Users WHERE id = %s", (user_id,))
         
-        # Commit transaction
-        conn.commit()
-        
+        conn.commit() 
         print("Member deleted successfully.")
     
     except Exception as e:
-        # Rollback on error
-        conn.rollback()
+        conn.rollback() 
         print("Failed to delete member:", e)
     
     finally:

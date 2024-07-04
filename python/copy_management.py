@@ -4,6 +4,7 @@ def add_copy(document_id, location):
     conn = connect_db()
     cursor = conn.cursor()
 
+    # Insert a new copy record into the Copies table
     cursor.execute("INSERT INTO Copies (document_id, location) VALUES (%s, %s)", (document_id, location))
     conn.commit()
 
@@ -28,14 +29,10 @@ def delete_copy(copy_id):
 
         # Delete row from Copies table
         cursor.execute("DELETE FROM Copies WHERE id = %s", (copy_id,))
-        
-        # Commit transaction
         conn.commit()
-        
         print("Copy deleted successfully.")
     
     except Exception as e:
-        # Rollback on error
         conn.rollback()
         print("Failed to delete copy:", e)
     
@@ -47,9 +44,11 @@ def list_copies(document_id):
     conn = connect_db()
     cursor = conn.cursor()
 
+    # Fetch all copies for a given document_id
     cursor.execute("SELECT id, location, is_borrowed FROM Copies WHERE document_id = %s", (document_id,))
     copies = cursor.fetchall()
 
+    # Print out the details of each copy
     for copy in copies:
         status = "Borrowed" if copy[2] else "Available"
         print(f"Copy ID: {copy[0]}, Location: {copy[1]}, Status: {status}")

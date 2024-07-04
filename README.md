@@ -31,21 +31,29 @@ pip install -r requirements.txt
 ## Usage
 1. Modify database_connection.py with your database connection information. 
 
-2. Run the Scheduler
-Execute the 'scheduler.py' file to set up email notifications for overdue books.
+2. Set up email credentials  
+- In overdue_management.py, replace the placeholders with your actual email address and password. 
+
+```bash
+from_email = "your_email@gmail.com"
+from_password = "your_email_password" 
+```
+
+3. Run the Scheduler 
+- Execute the 'scheduler.py' file to set up email notifications for overdue books.
 
 ```bash
 python scheduler.py
 ```
 
-3. Run the Main Program
-After running 'scheduler.py', execute the 'main.py' file in a separate terminal.
+4. Run the Main Program 
+- After running 'scheduler.py', execute the 'main.py' file in a separate terminal.
 
 ```bash
 python main.py 
 ```
 
-4. Follow the on-screen menu to select and perform the required tasks.
+5. Follow the on-screen menu to select and perform the required tasks.
 
 ## File Descriptions
 - main.py: Provides the user interface and executes the main functionalities.

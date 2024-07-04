@@ -8,10 +8,9 @@ def borrow_document(member_id, document_id):
     cursor = conn.cursor()
 
     try:
-        # Start transaction
         conn.autocommit = False
 
-        # Check the number of documents currently borrowed
+        # Check the number of documents currently borrowed by the member
         cursor.execute("SELECT COUNT(*) FROM Copies WHERE borrowed_by = %s AND is_borrowed = TRUE", (member_id,))
         current_borrowed_count = cursor.fetchone()[0]
 
@@ -29,13 +28,15 @@ def borrow_document(member_id, document_id):
         else:
             copy_id = copy[0]
             borrow_date = datetime.now()
-            due_date = borrow_date + timedelta(days=14)  # Example: Borrow for 2 weeks
+            due_date = borrow_date + timedelta(days=14)
+            # Update the copy record to reflect that it has been borrowed
             cursor.execute("""
                 UPDATE Copies 
                 SET is_borrowed = TRUE, borrowed_by = %s, borrow_date = %s, due_date = %s 
                 WHERE id = %s
             """, (member_id, borrow_date, due_date, copy_id))
             
+            # Insert a record into the BorrowRecords table
             cursor.execute("""
                 INSERT INTO BorrowRecords (member_id, document_id, borrow_date, due_date) 
                 VALUES (%s, %s, %s, %s)
@@ -55,7 +56,6 @@ def return_document(member_id, document_id):
     cursor = conn.cursor()
 
     try:
-        # Start transaction
         conn.autocommit = False
 
         # Check if the member has borrowed this document
@@ -78,6 +78,7 @@ def return_document(member_id, document_id):
             WHERE document_id = %s AND borrowed_by = %s
         """, (document_id, member_id))
 
+        # Update the BorrowRecords table to set the return date
         cursor.execute("""
             UPDATE BorrowRecords 
             SET return_date = %s 

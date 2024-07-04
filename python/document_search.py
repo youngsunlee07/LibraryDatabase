@@ -10,6 +10,7 @@ def search_documents(query_string):
 
     for term in search_terms:
         pattern = f"%{term}%"
+        # Add LIKE clauses for each search term
         like_clauses.append(
             "(d.title ILIKE %s OR a.name ILIKE %s OR c.name ILIKE %s OR k.keyword ILIKE %s OR d.document_type ILIKE %s OR CAST(d.publication_year AS TEXT) ILIKE %s)"
         )

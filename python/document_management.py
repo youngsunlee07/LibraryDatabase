@@ -5,7 +5,6 @@ def add_document(title, document_type, publication_year, classification_id, publ
     cursor = conn.cursor()
     
     try:
-        # Start transaction
         conn.autocommit = False
         
         # Find or add Publisher ID
@@ -74,13 +73,11 @@ def add_document(title, document_type, publication_year, classification_id, publ
             issue_title = input("Enter the issue title: ")
             issue_date = input("Enter the issue date (YYYY-MM-DD): ")
             cursor.execute("INSERT INTO magazines (document_id, issue_title, issue_date) VALUES (%s, %s, %s)", (document_id, issue_title, issue_date))
-        
-        # Commit transaction
+
         conn.commit()
         print("Document added successfully!")
     
     except Exception as e:
-        # Rollback on error
         conn.rollback()
         print("Failed to add document:", e)
     
@@ -93,7 +90,6 @@ def modify_document(document_id, new_title=None, new_document_type=None, new_pub
     cursor = conn.cursor()
     
     try:
-        # Disable autocommit to start a transaction
         conn.autocommit = False
         
         # Fetch existing row from database
@@ -116,13 +112,11 @@ def modify_document(document_id, new_title=None, new_document_type=None, new_pub
             WHERE id = %s
         """, (new_title, new_document_type, new_publication_year, new_classification_id, document_id))
         
-        # Commit transaction
         conn.commit()
         
         print("Document modified successfully!")
     
     except Exception as e:
-        # Rollback on error
         conn.rollback()
         print("Failed to modify document:", e)
     
@@ -148,14 +142,11 @@ def delete_document(document_id):
 
         # Delete row from Documents table
         cursor.execute("DELETE FROM Documents WHERE id = %s", (document_id,))
-        
-        # Commit transaction
         conn.commit()
         
         print("Document and related data deleted successfully!")
     
     except Exception as e:
-        # Rollback on error
         conn.rollback()
         print("Failed to delete document:", e)
     

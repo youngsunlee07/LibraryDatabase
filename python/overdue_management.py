@@ -10,19 +10,20 @@ def send_email(subject, body, to_email):
     from_email = "your_email@gmail.com"
     from_password = "your_email_password"
 
+    # Create the email message
     msg = MIMEMultipart()
     msg['From'] = from_email
     msg['To'] = to_email
     msg['Subject'] = subject
-
     msg.attach(MIMEText(body, 'plain'))
 
     try:
+        # Connect to the Gmail server
         server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(from_email, from_password)
-        server.sendmail(from_email, to_email, msg.as_string())
-        server.quit()
+        server.starttls()  # Start TLS encryption
+        server.login(from_email, from_password)  # Login to the email account
+        server.sendmail(from_email, to_email, msg.as_string())  # Send the email
+        server.quit()  # Quit the server connection
         print("Email sent successfully.")
     except Exception as e:
         print("Failed to send email:", e)
@@ -62,5 +63,6 @@ schedule.every().day.at("10:00").do(check_overdue_documents)
 
 print("Scheduler started")
 while True:
-    schedule.run_pending()
+    schedule.run_pending() 
     time.sleep(60)  # Wait 60 seconds between checks
+
