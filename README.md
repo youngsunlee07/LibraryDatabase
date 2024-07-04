@@ -1,7 +1,7 @@
 # Project Name: Library Management System
 
 ## Overview
-Library Management System is a simple console-based application for managing books and members in a library. It includes functionalities such as document search, borrowing, returning, copy management, member management, and email notifications for overdue books.
+Library Management System is a simple console-based application for managing books and members in a library using PostgreSQL and Python. It includes functionalities such as document search, borrowing, returning, copy management, member management, and email notifications for overdue books.
 
 ## Main Features
 1. Document Search
