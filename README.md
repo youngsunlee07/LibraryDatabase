@@ -53,12 +53,12 @@ python main.py
 - database_connection.py: Contains database connection settings.
 - document_search.py: Includes document search functionality.
 - borrow_return.py: Handles document borrowing and returning functionalities.
-- copy_management.py: Manages adding and deleting document copies.
+- copy_management.py: Manages adding, deleting, and listing document copies.
 - member_management.py: Manages adding, editing, and deleting members.
 - classification_management.py: Manages adding, editing, and deleting classifications.
 - document_management.py: Manages adding, editing, and deleting documents.
 - schema.sql: Contains the database schema, defining tables and relationships.
-- ERdiagram.jpg: An image file of the database ER diagram, visually showing the relationships between tables.
+- ER_diagram.jpg: An image file of the database ER diagram, visually showing the relationships between tables.
 - insert_sample.sql: An SQL file with sample data for initializing the database.
 
 ## Database Setup
