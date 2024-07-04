@@ -7,7 +7,7 @@ Library Management System is a simple console-based application for managing boo
 1. Document Search
 2. Document Borrowing and Returning
 3. Adding, Editing, and Deleting Documents
-4. Adding and Deleting Copies
+4. Adding, Deleting and listing Copies
 5. Adding, Editing, and Deleting Members
 6. Adding, Editing, and Deleting Classifications
 7. Email Notifications for Overdue Books
