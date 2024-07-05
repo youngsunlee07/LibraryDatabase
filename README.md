@@ -29,7 +29,28 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-1. Modify database_connection.py with your database connection information. 
+### Database Setup
+1. Set up PostgreSQL Database 
+- Before running the application, you need to set up the PostgreSQL database. 
+- Use the provided 'schema.sql' and 'insert_sample.sql' files to create tables and insert sample data.
+
+2. Synchronize Sequence Values
+- To ensure that the sequence values are correct after inserting the sample data, run the following commands. 
+
+```bash 
+SELECT setval(pg_get_serial_sequence('publishers', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM publishers;
+SELECT setval(pg_get_serial_sequence('documents', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM documents;
+SELECT setval(pg_get_serial_sequence('authors', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM authors;
+SELECT setval(pg_get_serial_sequence('keywords', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM keywords;
+SELECT setval(pg_get_serial_sequence('users', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM users;
+SELECT setval(pg_get_serial_sequence('copies', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM copies;
+SELECT setval(pg_get_serial_sequence('borrowrecords', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM borrowrecords;
+SELECT setval(pg_get_serial_sequence('classifications', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM classifications;
+```
+- These commands are included in the sample_data.sql file and can be executed after inserting sample data.
+
+### Application Setup 
+1. Modify 'database_connection.py' with your database connection information. 
 
 2. Set up email credentials  
 - In overdue_management.py, replace the placeholders with your actual email address and password. 
@@ -68,22 +89,6 @@ python main.py
 - schema.sql: Contains the database schema, defining tables and relationships.
 - ER_diagram.jpg: An image file of the database ER diagram, visually showing the relationships between tables.
 - insert_sample.sql: An SQL file with sample data for initializing the database.
-
-## Database Setup
-### PostgreSQL Sequence Value Synchronization
-To synchronize sequence values in the database, run the following commands. This updates sequence values after inserting sample data to ensure new records have the correct ID values.
-
-```bash 
-SELECT setval(pg_get_serial_sequence('publishers', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM publishers;
-SELECT setval(pg_get_serial_sequence('documents', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM documents;
-SELECT setval(pg_get_serial_sequence('authors', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM authors;
-SELECT setval(pg_get_serial_sequence('keywords', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM keywords;
-SELECT setval(pg_get_serial_sequence('users', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM users;
-SELECT setval(pg_get_serial_sequence('copies', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM copies;
-SELECT setval(pg_get_serial_sequence('borrowrecords', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM borrowrecords;
-SELECT setval(pg_get_serial_sequence('classifications', 'id'), COALESCE(MAX(id), 1) + 1, false) FROM classifications;
-```
-These commands are included in the sample_data.sql file and can be executed after inserting sample data.
 
 ## Contact
 For any inquiries, please contact: youngsun.lee07@gmail.com 
